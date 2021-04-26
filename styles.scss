@@ -1,0 +1,7 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: rgb(0, 0, 0);
+
+p {
+  font: 100% $font-stack;
+  color: $primary-color;
+}

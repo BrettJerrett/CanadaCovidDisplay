@@ -55,4 +55,5 @@ fetch('http://api.opencovid.ca/summary')
     }
 
 
+
 });

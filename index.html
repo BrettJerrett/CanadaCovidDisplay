@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="covid.js"></script>
+    <script src="covid.js"/></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
     <title>Canada Covid JS</title>
 </head>
 <body>
@@ -25,15 +26,19 @@
     <p><b>Province:</b> <span id="provinceName"/></p>
     <p><b>Daily Cases:</b> <span id="cases"/></p>
     <p><b>Active Cases:</b> <span id="active"/></p>
-    <p><b>Total Cases:</b> <span id="totalCases"/></p>
     <p><b>Deaths:</b> <span id="deaths"/></p>
-    <p><b>Total Deaths:</b> <span id="totalDeaths"/></p>
     <p><b>Recovered:</b> <span id="recovered"/></p>
-    <p><b>Total Recovered:</b> <span id="totalRecovered"/></p>
     <p><b>Daily Tests:</b> <span id="tests"/></p>
+    <p><b>Total Cases:</b> <span id="totalCases"/></p>
     <p><b>Total Tests:</b> <span id="totalTests"/></p>
     <p><b>Total Vaccinated:</b> <span id="vaccinated"/></p>
-    <p><b>Date Updated:</b> <span id="date"/></p>
+    <p><b>Total Recovered:</b> <span id="totalRecovered"/></p>
+    <p><b>Total Deaths:</b> <span id="totalDeaths"/></p>
+    <p><b>Last Updated:</b> <span id="date"/></p>
+
+    <div id="chart">
+        <apexchart type="donut" :options="chartOptions" :series="series"></apexchart>
+    </div>
 
 </body>
 </html>
