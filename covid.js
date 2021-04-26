@@ -17,6 +17,7 @@ fetch('http://api.opencovid.ca/summary')
         document.getElementById("totalRecovered").textContent=provinceObject[0].cumulative_recovered;
         document.getElementById("tests").textContent=provinceObject[0].cumulative_recovered;
         document.getElementById("totalTests").textContent=provinceObject[0].cumulative_testing;
+        document.getElementById("date").textContent=provinceObject[0].date;
     }
 
     if (document.addEventListener) {
@@ -42,7 +43,6 @@ fetch('http://api.opencovid.ca/summary')
 
                 //Pulling the corresponding id from the API and storing it in a const and passing it to updateData();
                 const currentObject = json.summary.filter(provinces => provinces.province === provinceId);
-                console.log("click!", currentObject);
                 updateData(currentObject);
                 break;
 
