@@ -17,7 +17,9 @@ fetch('http://api.opencovid.ca/summary')
         document.getElementById("totalRecovered").textContent=provinceObject[0].cumulative_recovered;
         document.getElementById("tests").textContent=provinceObject[0].cumulative_recovered;
         document.getElementById("totalTests").textContent=provinceObject[0].cumulative_testing;
+        document.getElementById("vaccinated").textContent=(provinceObject[0].cumulative_avaccine + provinceObject[0].cumulative_cvaccine + provinceObject[0].dvaccine);
         document.getElementById("date").textContent=provinceObject[0].date;
+
     }
 
     if (document.addEventListener) {
@@ -50,7 +52,6 @@ fetch('http://api.opencovid.ca/summary')
 
             element = element.parentNode;
         }
-
     }
 
 
