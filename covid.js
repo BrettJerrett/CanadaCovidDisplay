@@ -5,20 +5,20 @@ fetch('http://api.opencovid.ca/summary')
 
     console.log(json);
 
-    //Function that takes in a province array and updates the appropriate IDs to display the right information lol
+    //Function that takes in a province array and updates the appropriate span IDs to display the right information
     function updateData(provinceObject) {
         document.getElementById("provinceName").textContent=provinceObject[0].province;
         document.getElementById("cases").textContent=provinceObject[0].cases;
         document.getElementById("active").textContent=provinceObject[0].active_cases;
-        document.getElementById("casestd").textContent=provinceObject[0].cumulative_cases;
+        document.getElementById("totalCases").textContent=provinceObject[0].cumulative_cases;
         document.getElementById("deaths").textContent=provinceObject[0].deaths;
-        document.getElementById("deathstd").textContent=provinceObject[0].cumulative_deaths;
+        document.getElementById("totalDeaths").textContent=provinceObject[0].cumulative_deaths;
         document.getElementById("recovered").textContent=provinceObject[0].recovered;
-        document.getElementById("recoveredtd").textContent=provinceObject[0].cumulative_recovered;
-        document.getElementById("testing").textContent=provinceObject[0].cumulative_recovered;
+        document.getElementById("totalRecovered").textContent=provinceObject[0].cumulative_recovered;
+        document.getElementById("tests").textContent=provinceObject[0].cumulative_recovered;
+        document.getElementById("totalTests").textContent=provinceObject[0].cumulative_testing;
     }
 
-    //TODO: one onclick that takes in any button response.
     if (document.addEventListener) {
         document.addEventListener("click", findClick, false);
     }
