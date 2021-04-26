@@ -35,9 +35,39 @@ fetch('http://api.opencovid.ca/summary')
     const saObj = json.summary.filter(provinces => provinces.province === "Saskatchewan");
     const yuObj = json.summary.filter(provinces => provinces.province === "Yukon");
 
-    //on click listeners that will display appropriate API data corresponding to the province clicked.
+    //TODO: one onclick that takes in any button response.
+    if (document.addEventListener) {
+        document.addEventListener("click", findClick, false);
+    }
+    else if (document.attachEvent) {
+        document.attachEvent("onclick", findClick);
+    }
 
-    //TODO one onclick that takes in any button response.
+    //Function that identifies that a button is being clicked by class "provinceButtons"
+    function findClick(event) {
+        event = event || window.event;
+        event.target = event.target || event.srcElement;
+
+        let element = event.target;
+
+        //Climb up the document tree from the target of the event
+        while (element) {
+            if (element.nodeName === "BUTTON" && /provinceButtons/.test(element.className)) {
+                
+                //TODO: Find a way to identify which obj corresponds to the button, pass that object to updateData();
+                
+                console.log("click!");
+                break;
+            }
+
+            element = element.parentNode;
+        }
+
+    }
+
+
+   //on click listeners that will display appropriate API data corresponding to the province clicked.
+
     alberta.onclick = function() {
         updateData(abObj);
     }
@@ -96,6 +126,7 @@ fetch('http://api.opencovid.ca/summary')
         document.getElementById("provinceName").textContent=provinceObject[0].province;
         document.getElementById("cases").textContent=provinceObject[0].cases;
         document.getElementById("active").textContent=provinceObject[0].active_cases;
+        document.getElementById("casestd").textContent=provinceObject[0].cumulative_cases;
         document.getElementById("deaths").textContent=provinceObject[0].deaths;
         document.getElementById("deathstd").textContent=provinceObject[0].cumulative_deaths;
         document.getElementById("recovered").textContent=provinceObject[0].recovered;
