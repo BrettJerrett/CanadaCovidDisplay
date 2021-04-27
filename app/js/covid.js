@@ -16,7 +16,7 @@ fetch('http://api.opencovid.ca/summary')
     const vaccinated = document.getElementById("vaccinated");
     const date = document.getElementById("date");
 
-    // console.log(json);
+    console.log(json);
 
     //Function that takes in a province array and updates the appropriate span IDs to display the right information
     function updateData(provinceObject) {
@@ -123,8 +123,6 @@ fetch('http://api.opencovid.ca/summary')
             if(typeof provSum.cumulative_testing == 'number'){
                 totalTestsFed += provSum.cumulative_testing;
             }
-
-            console.log(json.summary[0]);
         });
 
         provName.textContent = "Canada";
@@ -141,7 +139,5 @@ fetch('http://api.opencovid.ca/summary')
          date.textContent = json.summary[0].date;
     }
 
-    // totalCountry();
-
-
+     totalCountry();
 });
