@@ -2,7 +2,39 @@ fetch('http://api.opencovid.ca/summary')
 .then(async function(response){
 
     const json = await response.json();
+    console.log(json);
 
+    //TODO: Validate the appropriate API off the bat before checking later in the logic to fix the objects.
+    
+    //Importing chart.js to handle a visualization of data pulled from the API
+    const data = {
+        labels: json.summary.filter(e=>e.province != "Repatriated").map(e=>e.province),
+        datasets: [{
+          label: 'Daily Cases',
+          data: json.summary.filter(e=>e.province != "Repatriated").map(e=>e.cases),
+          backgroundColor: generateColors(),
+          hoverOffset: 4
+        }]
+      };
+
+    const config = {
+        type: 'pie',
+        data: data,
+      };
+
+      let myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+      );
+
+    function generateColors() {
+        //Generate a random array of 13 colors, then return the array to the backgroundColor parameter
+        let colors = [];
+        for (let i = 0; i < 13; i++) {
+            colors[i] = ('#' + Math.floor(Math.random()*16777215).toString(16));
+        }
+        return colors;
+    } 
 
     //Function that takes in a province array and updates the appropriate span IDs to display the right information
     function updateData(provinceObject) {
@@ -20,6 +52,7 @@ fetch('http://api.opencovid.ca/summary')
         document.getElementById("date").textContent = provinceObject.date;
     }
 
+    //Creating an event for the click
     if (document.addEventListener) {
         document.addEventListener("click", findClick, false);
     }
@@ -48,8 +81,34 @@ fetch('http://api.opencovid.ca/summary')
                     break;
                 } else {
                     getCountryData();
-
                 }
+            }
+            
+            //Checking to see if the click event is happening for the chartBtns
+            if (element.nodeName === "BUTTON" && /chartBtns/.test(element.className)) {
+
+                //TODO: Update the label appropriately
+
+                //This is targetting the data-id for each button
+                let chartId = element.dataset.id;
+                //dynamically change the data directly with a filter using the chartId
+                data.datasets[0].data = json.summary.filter(e=>e.province != "Repatriated").map(e=>e[chartId]);
+                //Calling the chart update command to display the new data.
+                myChart.update();
+            }
+
+            if (element.nodeName === "BUTTON" && /chartControl/.test(element.className)) {
+
+                let chartType = element.dataset.id;
+
+                myChart.destroy();
+
+                myChart = new Chart(document.getElementById('myChart'), {
+                    type: chartType,
+                    data: data,
+                });
+          
+                myChart.update();
             }
 
             element = element.parentNode;
@@ -63,6 +122,7 @@ fetch('http://api.opencovid.ca/summary')
             // This grabs the keys (aka property names) of the Province Object
             const keys = Object.keys(currentProvince);
             return keys.reduce((accumulatedProvince, key) => {
+
                 // This is data we don't want to accumulate
                 if (key === "testing_info") return accumulatedProvince;
 
