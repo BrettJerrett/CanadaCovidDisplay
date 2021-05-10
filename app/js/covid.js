@@ -99,25 +99,16 @@ fetch('http://api.opencovid.ca/summary')
 
             if (element.nodeName === "BUTTON" && /chartControl/.test(element.className)) {
 
-                //myChart.reset();
-                myChart.destroy();
-                myChart = null;
-
-                console.log(myChart);
-
                 let chartType = element.dataset.id;
 
-                myChart = new Chart(
-                    document.getElementById('myChart'),
-                    {
-                        ...config,
-                        type: chartType
-                    }
-                );
+                myChart.destroy();
 
-                //TODO: Figure out what 
-                //myChart.update();
-
+                myChart = new Chart(document.getElementById('myChart'), {
+                    type: chartType,
+                    data: data,
+                });
+          
+                myChart.update();
             }
 
             element = element.parentNode;
