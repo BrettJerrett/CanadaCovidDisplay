@@ -1,10 +1,17 @@
+$buttonBackground: #249CC7;
+$displayBackground: #A8DDF1;
+
 body {
 	font-size: 16px;
+	width: 800px;
+	height: 400px;
+	align-content: center;
 }
 
 .buttons {
 	display: flex;
 	flex-wrap: wrap;
+	background-color: $buttonBackground;
 	// justify-content: center;
 
 	button {
@@ -12,4 +19,46 @@ body {
 		margin: 15px;
 		padding: 15px;
 	}
+}
+
+.display {
+	background-color: $displayBackground;
+}
+
+#chartDiv {
+	width: 35vw;
+	height: 35vw;
+}
+
+.chartBtn {
+	display: flex;
+	flex-wrap: wrap;
+	background-color: $buttonBackground;
+
+	button {
+		font-size: 18px;
+		margin: 15px;
+		padding: 15px;
+	}
+}
+
+.charts {
+	display: flex;
+	flex-wrap: wrap;
+	background-color: $buttonBackground;
+	// justify-content: center;
+
+	button {
+		height: 15px;
+		width: 15px;
+		font-size: 18px;
+		margin: 15px;
+		padding: 15px;
+		
+		.images {
+			height: 30px;
+			width: 30px;
+		}
+	}
+
 }

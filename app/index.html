@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/covid.js"/></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/styles.css">
 
     
@@ -28,19 +29,46 @@
         <button id="Yukon" class="provinceButtons">Yukon</button>
     </div>
     
-    
-    <p><b>Province:</b> <span id="provinceName"/></p>
-    <p><b>Daily Cases:</b> <span id="cases"/></p>
-    <p><b>Active Cases:</b> <span id="active"/></p>
-    <p><b>Deaths:</b> <span id="deaths"/></p>
-    <p><b>Recovered:</b> <span id="recovered"/></p>
-    <p><b>Daily Tests:</b> <span id="tests"/></p>
-    <p><b>Total Cases:</b> <span id="totalCases"/></p>
-    <p><b>Total Tests:</b> <span id="totalTests"/></p>
-    <p><b>Total Vaccinated:</b> <span id="vaccinated"/></p>
-    <p><b>Total Recovered:</b> <span id="totalRecovered"/></p>
-    <p><b>Total Deaths:</b> <span id="totalDeaths"/></p>
-    <p><b>Last Updated:</b> <span id="date"/></p>
+    <div class ="display">
+        <p><b>Province:</b> <span id="provinceName"/></p>
+        <p><b>Daily Cases:</b> <span id="cases"/></p>
+        <p><b>Active Cases:</b> <span id="active"/></p>
+        <p><b>Deaths:</b> <span id="deaths"/></p>
+        <p><b>Recovered:</b> <span id="recovered"/></p>
+        <p><b>Daily Tests:</b> <span id="tests"/></p>
+        <p><b>Total Cases:</b> <span id="totalCases"/></p>
+        <p><b>Total Tests:</b> <span id="totalTests"/></p>
+        <p><b>Total Vaccinated:</b> <span id="vaccinated"/></p>
+        <p><b>Total Recovered:</b> <span id="totalRecovered"/></p>
+        <p><b>Total Deaths:</b> <span id="totalDeaths"/></p>
+        <p><b>Last Updated:</b> <span id="date"/></p>
+    </div>
+
+    <div class="chartBtn">
+        <button id="casesBtn" class ="chartBtns" data-id="cases">Daily Cases</button>
+        <button id="activeCasesBtn" class ="chartBtns" data-id="active_cases">Active Cases</button>
+        <button id="deathsBtn" class ="chartBtns" data-id="deaths">Deaths</button>
+        <button id="recoveredBtn" class ="chartBtns" data-id="recovered">Recovered</button>
+        <button id="dailyCasesBtn" class ="chartBtns" data-id="testing">Daily Tests</button>
+        <button id="totalCasesBtn" class ="chartBtns" data-id="cumulative_cases">Total Cases</button>
+        <button id="totalTestsBtn" class ="chartBtns" data-id="cumulative_testing">Total Tests</button>
+        <button id="totalVaccinatedBtn" class ="chartBtns" data-id="cumulative_vaccines">Total Vaccinated</button>
+        <button id="totalRecoveredBtn" class ="chartBtns" data-id="cumulative_recovered">Total Recovered</button>
+        <button id="totalDeathsBtn" class ="chartBtns" data-id="cumulative_deaths">Total Deaths</button>
+    </div>
+
+    <div id="chartDiv">
+        <canvas id="myChart" width="572" height="572" style="display: block; box-sizing: border-box; height: 572px; width: 572px;"></canvas>
+    </div>
+
+    <!-- TODO: Add button icons to represent different charts-->
+    <div class="charts">
+        <button id="pieChart" class="chartControl" data-id="pie"><img src="images/pie-chart.png" id="pieImg" class="images"></button>
+        <button id="pieChart" class="chartControl" data-id="doughnut"><img src="images/doughnut-chart.png" id="doughnutImg" class="images"></button>
+        <button id="pieChart" class="chartControl" data-id="bar"><img src="images/bar-graph.png" id="barImg" class="images"></button>
+        <button id="pieChart" class="chartControl" data-id="polarArea"><img src="images/radar.png" id="radarImg" class="images"></button>
+
+    </div>
 
 </body>
 </html>
